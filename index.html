@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Priyanshi 💫</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffd6e7, #d9e7ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 430px;
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.92);
+      padding: 28px 22px;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      animation: appear 0.6s ease;
+    }
+
+    h1 {
+      color: #ff4f81;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #444;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 8px;
+      transition: 0.2s;
+    }
+
+    .yes {
+      background: #ff4f81;
+      color: white;
+    }
+
+    .no {
+      background: #555;
+      color: white;
+      position: relative;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+    }
+
+    .meter {
+      width: 100%;
+      height: 25px;
+      background: #eee;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ffd166, #ff6b81);
+      border-radius: 20px;
+      transition: width 0.5s ease;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: #ff4f81;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .emoji {
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    #runningNo {
+      position: fixed;
+      z-index: 999;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- CARD 1 -->
+  <div class="card" id="card1">
+    <div class="emoji">👀</div>
+
+    <h1>Hey Priyanshi!</h1>
+
+    <p>
+      Ek chhoti si baat poochni thi... 🥲<br>
+      Pehle ye batao, tum mujhse kitni angry ho?
+    </p>
+
+    <input type="range" id="anger" min="0" max="80" value="0">
+
+    <div class="meter">
+      <div class="meter-fill" id="meterFill"></div>
+    </div>
+
+    <p id="angerText">Abhi toh sab theek lag raha hai 😭</p>
+
+    <button class="yes" onclick="nextCard(2)">
+      Bata diya 😭
+    </button>
+  </div>
+
+
+  <!-- CARD 2 -->
+  <div class="card hidden" id="card2">
+
+    <div class="emoji">🥲</div>
+
+    <h1>Okayyy...</h1>
+
+    <p>
+      Shayad mujhse kuch galti hui hai.<br>
+      Shayad maine tumhe hurt bhi kiya ho...
+    </p>
+
+    <p>
+      But honestly, main nahi chahta ki ek misunderstanding
+      ki wajah se hamari dosti kharab ho. 🤝
+    </p>
+
+    <button class="yes" onclick="nextCard(3)">
+      Aage dekho 👀
+    </button>
+
+  </div>
+
+
+  <!-- CARD 3 -->
+  <div class="card hidden" id="card3">
+
+    <div class="emoji">🫶</div>
+
+    <h1>Ek aur question...</h1>
+
+    <p>
+      Kya hum purani baatein thodi side mein rakh kar
+      dobara normal ho sakte hain?
+    </p>
+
+    <p>
+      Matlab... phir se ache dost? 🤝
+    </p>
+
+    <button class="yes" onclick="nextCard(4)">
+      YES 💗
+    </button>
+
+    <button class="no" id="noButton">
+      NO 😭
+    </button>
+
+  </div>
+
+
+  <!-- FINAL CARD -->
+  <div class="card hidden" id="card4">
+
+    <div class="emoji">🥹🤝</div>
+
+    <h1>Thank You, Priyanshi!</h1>
+
+    <p>
+      Bas itna hi kehna tha...
+    </p>
+
+    <p>
+      <b>Kya hum dobara ache dost ban sakte hain?</b>
+    </p>
+
+    <p>
+      No pressure. Bas dil se poocha tha. ❤️‍🩹
+    </p>
+
+    <p class="small">
+      Friendship request successfully sent... 📩
+    </p>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  // ANGREY METER
+  const anger = document.getElementById("anger");
+  const meterFill = document.getElementById("meterFill");
+  const angerText = document.getElementById("angerText");
+
+  anger.addEventListener("input", function() {
+
+    let value = this.value;
+
+    meterFill.style.width = value + "%";
+
+    if (value < 20) {
+      angerText.innerText = "Lagta hai thoda hi angry ho 😭";
+    }
+    else if (value < 40) {
+      angerText.innerText = "Thoda gussa hai... samajh sakta hoon 🥲";
+    }
+    else if (value < 60) {
+      angerText.innerText = "Okayyy... galti ho gayi 😭";
+    }
+    else {
+      angerText.innerText = "Itna gussa bhi mat ho yaar 😭💀";
+    }
+  });
+
+
+  // NEXT CARD
+  function nextCard(number) {
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.classList.add("hidden");
+    });
+
+    document.getElementById("card" + number)
+      .classList.remove("hidden");
+  }
+
+
+  // RUNNING NO BUTTON 😂
+  const noButton = document.getElementById("noButton");
+
+  noButton.addEventListener("mouseenter", moveButton);
+  noButton.addEventListener("touchstart", moveButton);
+  noButton.addEventListener("click", moveButton);
+
+  function moveButton(e) {
+
+    e.preventDefault();
+
+    const maxX = window.innerWidth - noButton.offsetWidth - 20;
+    const maxY = window.innerHeight - noButton.offsetHeight - 20;
+
+    const randomX = Math.max(10, Math.random() * maxX);
+    const randomY = Math.max(10, Math.random() * maxY);
+
+    noButton.style.position = "fixed";
+    noButton.style.left = randomX + "px";
+    noButton.style.top = randomY + "px";
+
+    noButton.innerText = "Pakad ke dikhao 😭";
+
+  }
+
+</script>
+
+</body>
+</html>
